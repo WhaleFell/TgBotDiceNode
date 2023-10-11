@@ -20,8 +20,8 @@ module.exports = {
 
     ],
     betMin: 5.00, //单笔最小下注
-    betMax: 20000.00, //单笔最大下注
-    returnWater: 0.015, //反水比例，默认1.5%
+    betMax: 5000.00, //单笔最大下注
+    returnWater: 0.02, //反水比例，默认1.5%
     coin: " ", //货币单位
     gameTime: 1, //开奖间隔，请输入大于等于1的整数
     peilv: { //赔率设置
@@ -51,8 +51,8 @@ module.exports = {
     },
     sendmode: "pt", //发送提醒消息的模式 pt:图片+文字 t:文字
     isfptx: true, //是否开启即将封盘提醒 false:关闭 true:开启
-    istishishu: false, //是否在开奖结果展示输的用户投注 false:不展示 true:展示
-    ishistorypicture: false, //是否开奖历史以图片的形式发送 false:否 true:是
+    istishishu: true, //是否在开奖结果展示输的用户投注 false:不展示 true:展示
+    ishistorypicture: true, //是否开奖历史以图片的形式发送 false:否 true:是
 }
 
 
