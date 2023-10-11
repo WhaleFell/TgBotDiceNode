@@ -51,7 +51,7 @@ node app.js
 ### back-end
 
 ```shell
-docker run -d --name TgBotDiceAdmin -p 99:80 -v /wfwork/TgBotDiceAdmin:/usr/share/nginx/html nginx
+docker run -d --name TgBotDiceAdmin -p 999:80 -v /wfwork/TgBotDiceAdmin:/usr/share/nginx/html nginx
 ```
 
 ## Update feature
