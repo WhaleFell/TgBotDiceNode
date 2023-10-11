@@ -29,7 +29,7 @@ docker pull node
 # first run and install module
 docker run -dit --name node \
 -p 3888:3888 \
--v /wfwork/TgBotDice:/wkdir/ \
+-v /wfwork/TgBotDiceNode:/wkdir/ \
 -e TZ=Asia/Shanghai \
 -w /wkdir/ \
 node
@@ -42,7 +42,7 @@ pnpm install
 # finally command
 docker run -d --name TgBotDiceNode \
 -p 3888:3888 \
--v /wfwork/TgBotDice:/wkdir/ \
+-v /wfwork/TgBotDiceNode:/wkdir/ \
 -e TZ=Asia/Shanghai \
 -w /wkdir/ \
 node app.js
