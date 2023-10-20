@@ -317,7 +317,7 @@ function yuetxt(contant, telegramid, name, replyMessageid) {
             if (error) throw error;
             if (result.length == 0) {
                 connection.destroy();
-                bot.sendMessage(conf.chatid, `余额：0.00`, {
+                bot.sendMessage(conf.chatid, `余额：0.00 元`, {
                     reply_to_message_id: replyMessageid
                 })
             } else {
@@ -465,14 +465,14 @@ function getBalance(telegramid, name, callbackQueryid) {
                     connection.destroy();
                     if (error) throw error;
                     bot.answerCallbackQuery(callbackQueryid, {
-                        text: `ID：${telegramid}\n余额：0 ${conf.coin}`,
+                        text: `ID：${telegramid}\n余额：0 ${conf.coin} 元`,
                         show_alert: true
                     })
                 });
             } else {
                 connection.destroy();
                 bot.answerCallbackQuery(callbackQueryid, {
-                    text: `ID：${telegramid}\n余额：${result[0].balance.toFixed(2)} ${conf.coin}`,
+                    text: `ID：${telegramid}\n余额：${result[0].balance.toFixed(2)} ${conf.coin} 元`,
                     show_alert: true
                 })
             }
@@ -695,7 +695,7 @@ function bet(contant, telegramid, name, replyMessageid, firstname) {
             connection.query(`${sql};UPDATE users set balance = ${userBalance} where telegramid = "${telegramid}";`, (error, result) => {
                 connection.destroy();
                 if (error) throw error;
-                bot.sendMessage(conf.chatid, `【${firstname}-${telegramid}】\n下注内容:\n${allbet.substring(0, 4000)}\n余额：${userBalance.toFixed(2)}`, {
+                bot.sendMessage(conf.chatid, `【${firstname}-${telegramid}】\n下注内容:\n${allbet.substring(0, 4000)}\n余额：${userBalance.toFixed(2)} 元`, {
                     reply_to_message_id: replyMessageid,
                 })
             });

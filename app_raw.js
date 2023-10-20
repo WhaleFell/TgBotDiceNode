@@ -303,12 +303,12 @@ function yuetxt(contant, telegramid, name, replyMessageid) {
             if (error) throw error;
             if (result.length == 0) {
                 connection.destroy();
-                bot.sendMessage(conf.chatid, `余额：0.00`, {
+                bot.sendMessage(conf.chatid, `余额：0.00 元`, {
                     reply_to_message_id: replyMessageid
                 })
             } else {
                 connection.destroy();
-                bot.sendMessage(conf.chatid, `余额：${result[0].balance.toFixed(2)}`, {
+                bot.sendMessage(conf.chatid, `余额：${result[0].balance.toFixed(2)} 元`, {
                     reply_to_message_id: replyMessageid
                 })
             }

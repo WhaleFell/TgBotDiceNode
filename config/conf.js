@@ -18,7 +18,7 @@ module.exports = {
         [{ text: '查看余额', callback_data: '6' }, { text: '最近投注', callback_data: '7' }],
         [{ text: '查看流水', callback_data: '8' }, { text: '领取反水', callback_data: '9' }],
         // [{ text: 'USDT自助充提', callback_data: '10', url: "https://t.me/" }],
-        [{ text: 'USDT上下分群', callback_data: '11', url: "https://t.me/xinhuiyule6" }]
+        [{ text: '上下分群', callback_data: '11', url: "https://t.me/xinhuiyule6" }]
 
     ],
     betMin: 5.00, //单笔最小下注
