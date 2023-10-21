@@ -12,13 +12,13 @@ module.exports = {
         multipleStatements: true //不要改这个
     }),
     token: '6516458522:AAGqNMbmuQvWSsp_pXt47n71QAD-gxm0LGo', //机器人的token
-    chatid: -1001805116376, //发送群或用户的id
-    sxfqunid: -1001693033967,//上下分群id
+    chatid: -1001551542542, //发送群或用户的id
+    sxfqunid: -1001843254765,//上下分群id
     inline_keyboard: [ //内联键盘
         [{ text: '查看余额', callback_data: '6' }, { text: '最近投注', callback_data: '7' }],
         [{ text: '查看流水', callback_data: '8' }, { text: '领取反水', callback_data: '9' }],
         // [{ text: 'USDT自助充提', callback_data: '10', url: "https://t.me/" }],
-        [{ text: '上下分群', callback_data: '11', url: "https://t.me/xinhuiyule6" }]
+        [{ text: '上下分群', callback_data: '11', url: "https://t.me/xinhuiyl" }]
 
     ],
     betMin: 5.00, //单笔最小下注
@@ -120,9 +120,9 @@ module.exports = {
 // 开出豹子庄家通吃点杀除外
 // 复式 :
 // 大单 : 3.5倍 11, 13, 15, 17 点
-// 小双 : 3.5倍 4, 6, 8, 10 点 
-// 小单 : 4.5倍 5, 7, 9 点 
-// 大双 : 4.5倍 12, 14, 16 点 
+// 小双 : 3.5倍 4, 6, 8, 10 点
+// 小单 : 4.5倍 5, 7, 9 点
+// 大双 : 4.5倍 12, 14, 16 点
 // 顺子 : 8倍
 // 对子 : 2倍
 // 开出豹子杀除外 庄家通吃点
