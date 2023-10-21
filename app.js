@@ -322,7 +322,7 @@ function yuetxt(contant, telegramid, name, replyMessageid) {
                 })
             } else {
                 connection.destroy();
-                bot.sendMessage(conf.chatid, `余额：${result[0].balance.toFixed(2)}`, {
+                bot.sendMessage(conf.chatid, `余额：${result[0].balance.toFixed(2)} 元`, {
                     reply_to_message_id: replyMessageid
                 })
             }
