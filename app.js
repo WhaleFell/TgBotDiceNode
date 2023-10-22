@@ -183,6 +183,9 @@ function sxf(msg) {
 /*上分*/
 function shangfen(contant, telegramid, name, replyMessageid) {
     const matchResult = contant.match(new RegExp(`上分(\\d+)`));
+    if (!matchResult) {
+        return
+    }
     if (parseInt(matchResult[1]) % 1 == 0 && contant.split('上分')[0] == "") {
         conf.pool.getConnection(function (err, connection) {
             connection.query(`Insert into pay (name,telegramid,amount,state,way,applytime,replyMessageid) values ("${name}","${telegramid}",${parseInt(matchResult[1])},0,"群内上分",now(),${replyMessageid}); `, (error, result) => {
@@ -199,6 +202,9 @@ function shangfen(contant, telegramid, name, replyMessageid) {
 /*下分*/
 function xiafen(contant, telegramid, name, replyMessageid) {
     const matchResult = contant.match(new RegExp(`下分(\\d+)`));
+    if (!matchResult) {
+        return
+    };
     if (parseInt(matchResult[1]) % 1 == 0 && contant.split('下分')[0] == "") {
         conf.pool.getConnection(function (err, connection) {
             connection.query(`SELECT * FROM users where telegramid = "${telegramid}";`, (error, result) => {
