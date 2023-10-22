@@ -18,19 +18,6 @@ app.use(chart);
 app.use(table);
 app.use(result);
 
-// 跨域
-// express.all("*", function (req, res, next) {
-//     //设置允许跨域的域名，*代表允许任意域名跨域
-//     res.header("Access-Control-Allow-Origin", "*");
-//     //允许的header类型
-//     res.header("Access-Control-Allow-Headers", "content-type");
-//     //跨域允许的请求方式 
-//     res.header("Access-Control-Allow-Methods", "DELETE,PUT,POST,GET,OPTIONS");
-//     if (req.method.toLowerCase() == 'options')
-//         res.send(200);  //让options尝试请求快速结束
-//     else
-//         next();
-// })
 
 var iskey, iszaliu, a, b, c, daxiao, danshuang, baozi, shunzi, duizi, value, date, minutes, isfengpan = false, iskaijiang = false, resultArray = [], resultid = "1",
     resultCount = [
@@ -195,9 +182,10 @@ function sxf(msg) {
 
 /*上分*/
 function shangfen(contant, telegramid, name, replyMessageid) {
-    if (parseInt(contant.split('上分')[1]) % 1 == 0 && contant.split('上分')[0] == "") {
+    const matchResult = string.match(new RegExp(`上分(\\d+)`));
+    if (parseInt(matchResult[1]) % 1 == 0 && contant.split('上分')[0] == "") {
         conf.pool.getConnection(function (err, connection) {
-            connection.query(`Insert into pay (name,telegramid,amount,state,way,applytime,replyMessageid) values ("${name}","${telegramid}",${contant.split("上分")[1]},0,"群内上分",now(),${replyMessageid}); `, (error, result) => {
+            connection.query(`Insert into pay (name,telegramid,amount,state,way,applytime,replyMessageid) values ("${name}","${telegramid}",${parseInt(matchResult[1])},0,"群内上分",now(),${replyMessageid}); `, (error, result) => {
                 connection.destroy();
                 if (error) throw error;
                 bot.sendMessage(conf.sxfqunid, `收到，请等待审核！`, {
@@ -210,7 +198,8 @@ function shangfen(contant, telegramid, name, replyMessageid) {
 
 /*下分*/
 function xiafen(contant, telegramid, name, replyMessageid) {
-    if (parseInt(contant.split('下分')[1]) % 1 == 0 && contant.split('下分')[0] == "") {
+    const matchResult = string.match(new RegExp(`下分(\\d+)`));
+    if (parseInt(matchResult[1]) % 1 == 0 && contant.split('下分')[0] == "") {
         conf.pool.getConnection(function (err, connection) {
             connection.query(`SELECT * FROM users where telegramid = "${telegramid}";`, (error, result) => {
                 if (error) throw error;
@@ -220,7 +209,7 @@ function xiafen(contant, telegramid, name, replyMessageid) {
                     })
                 } else {
                     if (result[0].balance >= parseFloat(contant.split("下分")[1])) {
-                        connection.query(`Insert into withdrawal (name,telegramid,amount,state,way,applytime,replyMessageid) values ("${name}","${telegramid}",${contant.split("下分")[1]},0,"群内下分",now(),${replyMessageid}); update users set balance  = balance - ${contant.split("下分")[1]} where telegramid = "${telegramid}"`, (error, result) => {
+                        connection.query(`Insert into withdrawal (name,telegramid,amount,state,way,applytime,replyMessageid) values ("${name}","${telegramid}",${parseInt(matchResult[1])},0,"群内下分",now(),${replyMessageid}); update users set balance  = balance - ${parseInt(matchResult[1])} where telegramid = "${telegramid}"`, (error, result) => {
                             connection.destroy();
                             if (error) throw error;
                             bot.sendMessage(conf.sxfqunid, `收到，请等待审核！`, {
