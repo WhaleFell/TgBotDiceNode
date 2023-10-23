@@ -633,16 +633,21 @@ route.get('/api/pay-withdrawal/:telegramid', (req, res) => {
         WHERE w.telegramid = '${telegramId}'
     `;
 
-    connection.query(query, (error, results) => {
-        if (error) {
-            console.error('Error executing SQL query:', error);
-            res.status(500).json({ error: 'Internal Server Error' });
-            return;
-        }
+    conf.pool.getConnection(function (err, connection) {
 
-        // 将查询结果作为 JSON 响应返回
-        res.json(results);
-    });
+        connection.query(query, (error, results) => {
+            if (error) {
+                console.error('Error executing SQL query:', error);
+                res.status(500).json({ error: 'Internal Server Error' });
+                return;
+            }
+
+            // 将查询结果作为 JSON 响应返回
+            res.json(results);
+        });
+
+    })
+
 });
 
 module.exports = route;
