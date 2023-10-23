@@ -616,4 +616,33 @@ route.get('/table/result/search', (req, res) => {
 })
 
 
+// 定义 API 路由
+route.get('/api/pay-withdrawal/:telegramid', (req, res) => {
+    const telegramId = req.params.telegramid;
+
+    // 执行 SQL 查询
+    const query = `
+        SELECT p.telegramid, p.amount, p.applytime, p.way, p.state
+        FROM pay p
+        WHERE p.telegramid = '${telegramId}'
+        
+        UNION ALL
+        
+        SELECT w.telegramid, w.amount, w.applytime, w.way, w.state
+        FROM withdrawal w
+        WHERE w.telegramid = '${telegramId}'
+    `;
+
+    connection.query(query, (error, results) => {
+        if (error) {
+            console.error('Error executing SQL query:', error);
+            res.status(500).json({ error: 'Internal Server Error' });
+            return;
+        }
+
+        // 将查询结果作为 JSON 响应返回
+        res.json(results);
+    });
+});
+
 module.exports = route;
