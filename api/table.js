@@ -542,6 +542,7 @@ route.get('/table/bet/search', (req, res) => {
         } else if (common.oc(req)) {
             // SELECT * FROM bet where telegramid = "74628270";
             connection.query(`SELECT * FROM bet where ${params.key} = "${params.value}";`, (error, result) => {
+                console.log(`query error:${err}`)
                 connection.destroy();
                 if (!result) {
                     common.reqError(res);
