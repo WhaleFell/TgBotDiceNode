@@ -539,11 +539,11 @@ route.get('/table/bet/search', (req, res) => {
         if (err) {
             common.reqError(res);
         } else if (common.oc(req)) {
-            connection.query(`SELECT * FROM bet where ${params.key} = "${params.value}" order by id desc;`, (error, result) => {
+            connection.query(`SELECT * FROM bet where ${params.key} = "${params.value}";`, (error, result) => {
+                connection.destroy();
                 if (!result) {
                     common.reqError(res);
                 }
-                connection.destroy();
                 if (error) {
                     common.reqError(res);
                 } else {
