@@ -540,6 +540,9 @@ route.get('/table/bet/search', (req, res) => {
             common.reqError(res);
         } else if (common.oc(req)) {
             connection.query(`SELECT * FROM bet where ${params.key} = "${params.value}" order by id desc;`, (error, result) => {
+                if (!result) {
+                    common.reqError(res);
+                }
                 var count = result.length;
                 connection.destroy();
                 if (error) {
