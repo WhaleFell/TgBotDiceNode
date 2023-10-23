@@ -535,10 +535,12 @@ route.get('/table/bet', (req, res) => {
 // /table/bet/search?telegramid=&
 route.get('/table/bet/search', (req, res) => {
     conf.pool.getConnection(function (err, connection) {
+        console.log(err)
         var params = req.query;
         if (err) {
             common.reqError(res);
         } else if (common.oc(req)) {
+            // SELECT * FROM bet where telegramid = "74628270";
             connection.query(`SELECT * FROM bet where ${params.key} = "${params.value}";`, (error, result) => {
                 connection.destroy();
                 if (!result) {
