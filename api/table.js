@@ -543,7 +543,6 @@ route.get('/table/bet/search', (req, res) => {
                 if (!result) {
                     common.reqError(res);
                 }
-                var count = result.length;
                 connection.destroy();
                 if (error) {
                     common.reqError(res);
@@ -551,7 +550,6 @@ route.get('/table/bet/search', (req, res) => {
                     res.send({
                         code: 0,
                         msg: "",
-                        count: count,
                         data: result
                     })
                 }
